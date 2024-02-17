@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        background-image: url("Hotdog.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .header {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: red;
+      }
+      .info {
+        font-size: 20px;
+        height: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: red;
+        background-color: rgb(255, 153, 0);
+      }
+
+      .h1 {
+        font-size: 100px;
+      }
+    </style>
+    <title>Function Demo</title>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1>Joe's Hotdog Stand</h1>
+    </div>
+    <div class="info">
+      <script language="javascript">
+        function showMoney(number) {
+            var x = Math.round(number * 100) / 100;
+            var y = (x * 100) % 100;
+            var string = "";
+
+
+            var z = y - Math.floor(y);
+            z = z * 100;
+            if (Math.floor(z) == 99) {
+            y = Math.ceil(y);
+            }
+            y = Math.floor(y);
+
+            if (y == 0) {
+                string += x + ".00";
+            } else if (y % 10 == 0) {
+                string += x + "0"
+            } else {
+                string += x;
+            }
+          return string;
+        }
+
+        let numDogs = prompt("How many hotdogs do you want?");
+        let dogsPrice = numDogs * 4.65;
+        document.write("You ordered " + numDogs + " hotdogs which cost $" + showMoney(dogsPrice) +"<br>");
+
+        let numFries = prompt("How many fries do you want?");
+        let friesPrice = numFries * 3.75;
+        document.write("You ordered " + numFries + " fries which cost $" + showMoney(friesPrice) + "<br>");
+
+        let numSoda = prompt("How many sodas do you want?");
+        let sodaPrice = numFries * 1.89;
+        document.write("You ordered " + numSoda + " sodas which cost $" + showMoney(sodaPrice) + "<br>");
+
+        let number = 2;
+        console.log(showMoney(number));
+
+        function subtotal(numDogs, numFries, numSoda) {
+          let total = numDogs * 4.65 + numFries * 3.75 + numSoda * 1.89;
+          return showMoney(total);
+        }
+
+        let total = subtotal(
+          showMoney(numDogs),
+          showMoney(numFries),
+          showMoney(numSoda)
+        );
+
+        console.log(total);
+        document.write("Pre-discount total: $" + total + "<br>");
+
+        document.write("Joe's discount: $");
+        if (total > 25) {
+          document.write(showMoney(total * 0.1) + "<br>");
+          total = total - total * 0.1;
+          total = showMoney(total);
+        } else {
+          document.write("discount not applicable <br>");
+        }
+        document.write("Total Post-discount: $" + total + "<br>");
+
+        let tax = total * 0.0625;
+        tax = showMoney(tax);
+
+        console.log(tax);
+        document.write("Tax: $" + tax + "<br>");
+
+        var final = Number(total) + Number(tax);
+
+        console.log(total);
+        document.write("Final total: $" + showMoney(final) + "<br>");
+      </script>
+    </div>
+  </body>
+</html>
